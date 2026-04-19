@@ -97,6 +97,33 @@ adb shell input tap 540 1200
 - `*.focus.txt`
 - `*.resumed.txt`
 
+
+## Q&A
+
+**Does `adb input tap` return a success status?**  
+No. `adb shell input tap` only injects a touch event. It does **not** tell you whether the UI actually responded. The recommended way to verify a tap is to capture before/after evidence: screenshot, UI XML, focused window, and resumed activity.
+
+**Does this project support multiple devices?**  
+Not in the first version. The current scripts support a single online device by default, or an explicitly selected device via `-s <serial>`. A larger multi-device orchestration layer is intentionally out of scope for now.
+
+**Does it include screenshots and UI XML dumps?**  
+Yes. The minimal workflow already includes `screencap` and `uiautomator dump`, because real verification needs real artifacts instead of guesswork.
+
+**Does it require Termux, Shizuku, or root?**  
+No. This skill is built around standard ADB only. It does not require Termux, Shizuku, Accessibility, or root to run the core workflow.
+
+**Why does the project focus on a minimal workflow?**  
+Because the goal is reliability first. Device connection, state inspection, app launch, screenshot capture, UI dump, and before/after comparison are the smallest set of steps that can prove a mobile action really happened.
+
+## Help This Project Grow
+
+If this skill is useful in your workflow, here are the most practical ways to help it grow:
+
+- **Star the repo** to make it easier for other developers to discover it.
+- **Open an issue** if you hit device-specific quirks, ADB edge cases, or documentation gaps.
+- **Submit a PR** if you improve scripts, compatibility, or verification logic.
+- **Share your use case** — for example, QA automation, Android agent workflows, or remote device control. Real usage feedback helps shape the next iteration.
+
 ## License
 
 MIT
